@@ -25,7 +25,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <stdint.h>
 #include <time.h>
 #include "zlib.h"
 #include "zip.h"
@@ -1646,7 +1645,7 @@ extern int ZEXPORT zipWriteInFileInZip(zipFile file, const void* buf, unsigned i
     else
 #endif
     {
-      zi->ci.stream.next_in = (Bytef*)(uintptr_t)buf;
+      zi->ci.stream.next_in = (Bytef*)(ZPOS64_T)buf;
       zi->ci.stream.avail_in = len;
 
       while ((err==ZIP_OK) && (zi->ci.stream.avail_in>0))
